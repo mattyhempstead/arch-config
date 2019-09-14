@@ -1,0 +1,22 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "window.zoomLevel": 1,
+    "window.enableMenuBarMnemonics": false,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "window.menuBarVisibility": "default",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "window.titleBarStyle": "custom",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "files.associations": {
+        // ...
+        "**/.i3/config": "i3",
+        "**/i3/config": "i3"
+        // ...
+    },
+}
