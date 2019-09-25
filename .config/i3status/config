@@ -34,12 +34,6 @@ ethernet _first_ {
         format_down = " E: down "
 }
 
-battery all {
-        status_bat = "🔋"
-        status_chr = "⚡"
-        format = " %status %percentage %remaining "
-}
-
 disk "/" {
         format = " %avail / %total "
 }
@@ -51,15 +45,21 @@ memory {
 }
 
 tztime local {
-        format = " %Y-%m-%d %H:%M:%S"
-}
-
-cpu_temperature 0 {
-        format = " %degrees°C "
+        format = " %Y-%m-%d %r"
 }
 
 cpu_usage {
-        format = " %usage "
+        format = " <span color='#00FF00'>📈</span><b> %usage </b>"
+}
+
+cpu_temperature 0 {
+        format = "<b><span color='#FF3333'>🌡</span>%degrees°C </b>"
+}
+
+battery all {
+        status_bat = "<span color='#00FF00'><b>🔋</b></span>"
+        status_chr = "<span color='#FFFF00'><b>⚡</b></span>"
+        format = " %status <b>%percentage</b> <i>%remaining</i> "
 }
 
 volume master {
