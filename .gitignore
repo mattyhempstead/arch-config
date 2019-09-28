@@ -1,6 +1,9 @@
 *
 !.gitignore
 
+# Add my .bashrc
+!.bashrc
+
 # Add certain files in .config
 !.config
 
