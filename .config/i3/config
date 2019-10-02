@@ -182,6 +182,10 @@ focus_wrapping no
 # Start ULauncher (only if ulauncher does not already exist)
 exec_always --no-startup-id "sh ~/.config/i3/ulauncher.sh"
 
+# Tell Ulauncher preferences to launch in floating mode
+for_window [title="Ulauncher Preferences" class="Ulauncher"] floating enable
+
+
 # Start albert on login
 # exec_always --no-startup-id albert
 
@@ -227,7 +231,6 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 # Read from Xresources file
 # This is currently used to configure how the URxvt terminal looks
 exec_always xrdb ~/.Xresources
-
 
 
 
