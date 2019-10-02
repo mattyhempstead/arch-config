@@ -8,6 +8,9 @@
 
 general {
         colors = true
+        color_good = "#00FF00"
+        color_bad = "#FF0000"
+        color_degraded = "#00FF00"
         markup = "pango"
         interval = 1
 }
@@ -57,9 +60,14 @@ cpu_temperature 0 {
 }
 
 battery all {
-        status_bat = "<span color='#00FF00'><b>🔋</b></span>"
+        #color = "#0000FF"
+        #background = "#0000FF"
+        status_bat = "<span><b>🔋</b></span>"
         status_chr = "<span color='#FFFF00'><b>⚡</b></span>"
+        status_full = "<span color='#FF0000'><b>🖤</b></span>"
         format = " %status <b>%percentage</b> <i>%remaining</i> "
+        threshold_type = "percentage"
+        low_threshold = "20"
 }
 
 volume master {

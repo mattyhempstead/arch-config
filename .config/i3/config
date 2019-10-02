@@ -28,30 +28,18 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -154,6 +142,11 @@ bar {
         position top
         status_command i3status
         font pango: Sans Mono 13
+        colors {
+                background #111111
+                # separator #0000FF
+                # statusline #00FF00
+        }
 }
 
 
@@ -163,7 +156,7 @@ exec_always --no-startup-id xinput --set-prop "SYNA7DB5:00 06CB:7DB7 Touchpad" "
 
 # i3-gaps
 gaps inner 10
-# gaps outer 5
+gaps outer -5
 
 # Remove title bars by setting font size to zero
 font pango:DejaVu Sans Mono 0
@@ -175,7 +168,9 @@ default_border pixel 5
 hide_edge_borders smart
 
 # Set wallpaper background colour
-exec_always --no-startup-id xsetroot -solid "#444"
+# exec_always --no-startup-id hsetroot -solid "#444"
+exec_always --no-startup-id hsetroot -solid "#111111"
+
 
 # Stop focusing containers with the arrow keys from wrapping 
 # around to the other side of the screen
@@ -184,8 +179,11 @@ focus_wrapping no
 
 ## Application Launchers
 
+# Start ULauncher (only if ulauncher does not already exist)
+exec_always --no-startup-id "sh ~/.config/i3/ulauncher.sh"
+
 # Start albert on login
-exec_always --no-startup-id albert
+# exec_always --no-startup-id albert
 
 # Alternative is to use dmenu
 # bindsym $mod+d exec dmenu_run
@@ -200,34 +198,44 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
 
 
 # Allow me to change the screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
-
-# bindsym XF86MonBrightnessUp+Shift exec --no-startup-id "light -A 1"
-# bindsym XF86MonBrightnessDown+Shift exec --no-startup-id "light -U 1"
-
-# Restart notification service
-exec_always systemctl restart --user dunst.service
-
-
-exec_always compton -CGb
-
-
+# bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
+# bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
 # bindsym XF86MonBrightnessDown exec --no-startup-id "xrandr --output eDP-1 --brightness 0.5"
 # bindsym XF86MonBrightnessUp exec --no-startup-id "xrandr --output eDP-1 --brightness 1"
+
+
+# Restart dunst notification service
+exec_always systemctl restart --user dunst.service
+
+# Start compton (i think this makes things better)
+# It at least appears to give a nice transition effect between desktops
+exec_always compton -CGb
+
+# Not sure about all these custom colours
+# However this does ensure client.focused_inactive is the same colour as client.unfocused
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #222222 #888888 #292d2e   #222222
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+
+# Read from Xresources file
+# This is currently used to configure how the URxvt terminal looks
+exec_always xrdb ~/.Xresources
+
+
 
 
 # sudo light -s sysfs/backlight/intel_backlight -S 50
 
 
-
-
 # Set wallpaper to picture
 # feh --bg-fill ~/Pictures/Wallpapers/adwaita-night.jpg
-
 
 
 # exec_always --no-startup-id xrandr --output eDP-1 --scale 0.8x0.8

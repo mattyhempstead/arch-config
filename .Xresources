@@ -1,0 +1,25 @@
+
+! Main terminal colours
+! Anything other than a #000 background and #FFF text is unacceptable
+URxvt.foreground: #FFFFFF
+URxvt.background: #000000
+
+URxvt.font: xft:Source Code Pro:pixelsize=18:style=medium,\
+            xft:Noto Emoji
+
+! Fade text on unfocus
+URxvt.fading: 20
+
+! Scrolly boi
+URxvt.scrollBar_right: true
+URxvt.thickness: 10
+URxvt.scrollColor: #444444
+URxvt.troughColor: #222222
+
+! Blinky cursor boi
+URxvt.cursorColor: #FFFFFF
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+
+! A more visible blue on the black background
+URxvt.color12: #264CC9

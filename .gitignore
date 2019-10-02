@@ -5,6 +5,9 @@
 !.bashrc
 !.bash_profile
 
+# XResources
+!.Xresources
+
 # Add certain files in .config
 !.config
 
