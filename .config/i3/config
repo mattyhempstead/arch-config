@@ -30,8 +30,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt
 
-# kill focused window
-bindsym $mod+Shift+q kill
+# Kill focused window
+# However don't kill Ulauncher (just minimise it)
+bindsym $mod+Shift+q [con_id="__focused__" title="^(?!Ulauncher window title).*$"] kill
 
 # change focus
 bindsym $mod+Left focus left
@@ -55,9 +56,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -149,6 +150,7 @@ bar {
         }
 }
 
+bindsym $mod+b exec i3-msg bar mode toggle
 
 
 # Invert touchpad scrolling
@@ -161,8 +163,12 @@ gaps outer -5
 # Remove title bars by setting font size to zero
 font pango:DejaVu Sans Mono 0
 
-# Set size of highlightable borders
+# Set size of highlightable borders, also ensure all windows use it
 default_border pixel 5
+# for_window [class=".*"] default_border pixel 5
+# new_window pixel 10
+# for_window [class=".*"] new_window pixel 10
+
 
 # Remove borders when only one window exists
 hide_edge_borders smart
@@ -224,7 +230,7 @@ exec_always compton -CGb
 
 # Not sure about all these custom colours
 # However this does ensure client.focused_inactive is the same colour as client.unfocused
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #184466
 client.focused_inactive #333333 #222222 #888888 #292d2e   #222222
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 
