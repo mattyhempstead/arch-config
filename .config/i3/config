@@ -155,7 +155,7 @@ font pango:DejaVu Sans Mono 0
 
 # Set size of highlightable borders
 # for_window check ensures all windows use it (except Ulauncher)
-for_window [title1="^(?!Ulauncher window title).*$"] border pixel 5
+for_window [title="^(?!Ulauncher window title).*$"] border pixel 5
 
 # Remove borders when only one window exists
 hide_edge_borders smart
