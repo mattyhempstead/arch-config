@@ -163,12 +163,9 @@ gaps outer -5
 # Remove title bars by setting font size to zero
 font pango:DejaVu Sans Mono 0
 
-# Set size of highlightable borders, also ensure all windows use it
-default_border pixel 5
-# for_window [class=".*"] default_border pixel 5
-# new_window pixel 10
-# for_window [class=".*"] new_window pixel 10
-
+# Set size of highlightable borders
+# for_window check ensures all windows use it
+for_window [class=".*"] border pixel 5
 
 # Remove borders when only one window exists
 hide_edge_borders smart
