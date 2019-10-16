@@ -17,6 +17,7 @@ PS1=$USER$WD$BRANCH$SYMBOL
 # Some useful aliases
 alias ls='ls --color=auto'
 alias pls='sudo $(fc -ln -1)' # runs the previous command with sudo
+alias cls='clear'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/matty/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/matty/Downloads/google-cloud-sdk/path.bash.inc'; fi
