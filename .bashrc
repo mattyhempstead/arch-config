@@ -13,10 +13,10 @@ BRANCH='\[\e[;;35m$(if [[ $(git rev-parse --show-toplevel 2> /dev/null) != "/hom
 SYMBOL='\[\e[;;31m\]🖤 \[\e[;;37m\]'
 PS1=$USER$WD$BRANCH$SYMBOL
 
-#PS1="matty $ "
 
+# Some useful aliases
 alias ls='ls --color=auto'
-alias pls='sudo $(fc -ln -1)'
+alias pls='sudo $(fc -ln -1)' # runs the previous command with sudo
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/matty/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/matty/Downloads/google-cloud-sdk/path.bash.inc'; fi
@@ -27,3 +27,10 @@ export http_proxy=''
 export https_proxy=''
 export ftp_proxy=''
 export socks_proxy=''
+
+# Add bindings to bring back Ctrl-Left and Ctrl-Right cursor navigation
+bind '"\eOc":shell-forward-word'
+bind '"\eOd":shell-backward-word'
+
+# Binding for Ctrl-Backspace to delete word
+bind '"\C-h":shell-backward-kill-word'
