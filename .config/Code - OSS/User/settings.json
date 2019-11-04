@@ -8,15 +8,12 @@
         "typescript",
         "typescriptreact"
     ],
-    "window.menuBarVisibility": "default",
+    "window.menuBarVisibility": "toggle",
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
-    "window.titleBarStyle": "custom",
     "latex-workshop.view.pdf.viewer": "tab",
     "files.associations": {
-        // ...
         "**/.i3/config": "i3",
         "**/i3/config": "i3"
-        // ...
-    },
+    }
 }
