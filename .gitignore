@@ -8,6 +8,9 @@
 # XResources
 !.Xresources
 
+# vim
+!.vimrc
+
 # Add certain files in .config
 !.config
 
