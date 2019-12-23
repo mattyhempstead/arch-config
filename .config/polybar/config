@@ -1,0 +1,78 @@
+; vim:ft=dosini
+
+[bar/bar]
+height = 26
+background = #111
+padding-right = 1
+
+module-margin-left = 3
+
+modules-left = i3
+modules-right = pulseaudio memory temperature cpu battery date
+
+;font-0 = SansMono:size=14;4
+font-0 = fixed:pixelsize=14;4
+;font-0 = FontAwesome:size=14;4
+font-1 = unifont:fontformat=truetype:size=14:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+tray-position = right
+
+[module/date]
+type = internal/date
+date = %Y-%m-%d%
+time = %H:%M:%S
+label = %date% %time% 
+
+
+[module/i3]
+type = internal/i3
+strip-wsnumbers = true
+
+
+label-focused = %name%
+label-focused-padding = 1
+label-focused-background = #5d8ddd 
+
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+label-urgent = %name%
+label-urgent-padding = 1
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "📈🗠CPU "
+format-prefix-foreground = #0F0
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 3
+format-prefix = "MEM "
+format-prefix-foreground = #FF0
+format-underline = #4bffdc
+label = %percentage_used%%
+format-foreground = #0F0
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+format-discharging = <label-discharging>
+format-discharging-prefix = "BAT "
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+format = <label>
+label = %temperature-c%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume>
+label-volume = VOL %percentage%%
+;format-muted = <label-muted>
+;label-muted = 🔇 %percentage%%

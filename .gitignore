@@ -26,3 +26,8 @@
 !.config/Code\ -\ OSS/User
 !.config/Code\ -\ OSS/User/settings.json
 !.config/Code\ -\ OSS/User/keybindings.json
+
+!.config/polybar
+!.config/polybar/config
+!.config/polybar/launch.sh
+
