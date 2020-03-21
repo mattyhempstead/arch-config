@@ -31,3 +31,6 @@
 !.config/polybar/config
 !.config/polybar/launch.sh
 
+!.config/dunst/
+!.config/dunst/**
+
