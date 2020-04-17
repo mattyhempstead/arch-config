@@ -1,7 +1,17 @@
-## i3 config
 
-# Windows/Super Key
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+#
+
 set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font pango:monospace 13
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+# font pango:DejaVu Sans Mono 13
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -17,30 +27,32 @@ exec --no-startup-id nm-applet
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Start a terminal
+# start a terminal
 bindsym $mod+Return exec urxvt
 
 # Kill focused window
 # However don't kill Ulauncher (just minimise it)
 bindsym $mod+Shift+q [con_id="__focused__" title="^(?!Ulauncher window title).*$"] kill
 
-# Change focus
+# change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move focused window
+# move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Split in horizontal/vertical orientation
+# split in horizontal orientation
 bindsym $mod+h split h
+
+# split in vertical orientation
 bindsym $mod+v split v
 
-# Enter fullscreen mode for the focused container
+# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
@@ -48,10 +60,10 @@ bindsym $mod+f fullscreen toggle
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
-# Toggle tiling / floating
+# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# Change focus between tiling / floating windows
+# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
@@ -118,42 +130,26 @@ bindsym $mod+Mod1+Right resize grow width 5 px or 5 ppt
 # Launch polybar
 exec_always --no-startup-id sh ~/.config/polybar/launch.sh
 
-# Shortcut to toggle status bar
-bindsym $mod+b exec polybar-msg cmd toggle
-
-
-# Invert touchpad scrolling
-exec_always --no-startup-id xinput --set-prop "SYNA7DB5:00 06CB:7DB7 Touchpad" "libinput Natural Scrolling Enabled" 1
-
-# Convert middle mouse button into left mouse button
-# "12" represents the id of the touchpad as shown in `xinput list`
-exec_always xinput set-button-map 12 1 1 3
-
 # i3-gaps
 gaps inner 10
 gaps outer -5
 
 # Remove title bars by setting font size to zero
-font pango:DejaVu Sans Mono 0
+#font pango:DejaVu Sans Mono 0
 
 # Set size of highlightable borders
 # for_window check ensures all windows use it (except Ulauncher)
-for_window [class="^(?!Ulauncher).*$"] border pixel 5
+for_window [class="^(?!Ulauncher).*$"] border pixel 4
 
 # Remove borders when only one window exists
 hide_edge_borders smart
-
-# Set wallpaper background colour
-# exec_always --no-startup-id hsetroot -solid "#444"
-exec_always --no-startup-id hsetroot -solid "#111111"
-
 
 # Stop focusing containers with the arrow keys from wrapping 
 # around to the other side of the screen
 focus_wrapping no
 
 
-## Application Launcher
+## Application Launchers
 
 # Start ULauncher (only if ulauncher does not already exist)
 exec_always --no-startup-id "sh ~/.config/i3/ulauncher.sh"
@@ -163,30 +159,25 @@ for_window [title="Ulauncher Preferences" class="Ulauncher"] floating enable
 
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+#set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
 
+# Restart dunst notification service
+#exec_always systemctl restart --user dunst.service
 
-# Allow me to change the screen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
-bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
-# bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
-# bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
-# bindsym XF86MonBrightnessDown exec --no-startup-id "xrandr --output eDP-1 --brightness 0.5"
-# bindsym XF86MonBrightnessUp exec --no-startup-id "xrandr --output eDP-1 --brightness 1"
+# Start compositor
+exec_always picom -CG
 
+# Set wallpaper background colour
+exec_always --no-startup-id hsetroot -solid "#111111"
 
-# (Re)start dunst notification service
-exec_always --no-startup-id "sh ~/.config/i3/dunst.sh"
-
-# Start compton (i think this makes things better)
-# It at least appears to give a nice transition effect between desktops
-exec_always compton -CGb
+# Start bluetooth
+exec_always blueman-applet 
 
 # Not sure about all these custom colours
 # However this does ensure client.focused_inactive is the same colour as client.unfocused
@@ -198,24 +189,4 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 # This is currently used to configure how the URxvt terminal looks
 exec_always xrdb ~/.Xresources
 
-
-
-
-for_window [title="custom_calendar"] floating enable
-
-
-# sudo light -s sysfs/backlight/intel_backlight -S 50
-
-
-# Set wallpaper to picture
-# feh --bg-fill ~/Pictures/Wallpapers/adwaita-night.jpg
-
-
-# exec_always --no-startup-id xrandr --output eDP-1 --scale 0.8x0.8
-# exec_always --no-startup-id xrandr --output eDP-1 --scale 1x1
-# exec_always --no-startup-id xrandr --dpi 276 --fb 1920x1080
-# exec_always --no-startup-id export GDK_SCALE=2
-# exec_always --no-startup-id export GDK_DPI_SCALE=0.5
-# exec_always --no-startup-id export QT_AUTO_SCREEN_SCALE_FACTOR=0
-# exec_always --no-startup-id export QT_SCREEN_SCALE_FACTORS=2
 
