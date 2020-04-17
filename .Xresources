@@ -4,7 +4,7 @@
 URxvt.foreground: #FFFFFF
 URxvt.background: #000000
 
-URxvt.font: xft:Source Code Pro:pixelsize=18:style=medium,\
+URxvt.font: xft:Source Code Pro:pixelsize=16:style=medium,\
             xft:Noto Emoji
 
 ! Fade text on unfocus

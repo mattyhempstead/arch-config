@@ -16,7 +16,7 @@ font-2 = Noto Sans Symbols2:pixelsize=14;6
 font-3 = Symbols Nerd Font:pixelsize=14;4
 ;font-3 = FreeMono:pixelsize=14;4
 
-monitor = eDP-1 
+#monitor = eDP-1 
 tray-position = right
 
 #line-size = 2
