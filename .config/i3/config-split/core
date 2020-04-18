@@ -1,0 +1,10 @@
+# vim:ft=conf
+# This file contains the core to concat 
+
+set $mod Mod4
+
+# Restarting i3 requires first building the config file
+bindsym $mod+Shift+r exec "sh ~/.config/i3/build-config.sh"; restart
+
+
+ 
