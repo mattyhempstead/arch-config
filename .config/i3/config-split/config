@@ -1,31 +1,5 @@
-
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
-#
-
-#set $mod Mod4
-
-# Assorted commands for configuring desktop
-exec_always --no-startup-id "sh ~/.config/i3/scripts/desktop.sh"
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# font pango:monospace 13
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-# font pango:DejaVu Sans Mono 13
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-# exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -c 000000
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# vim:ft=conf
+# Other configuration  
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -112,13 +86,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-#bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
 # Resize window
 # Pressing left will shrink the window’s width.
 # Pressing right will grow the window’s width.
@@ -129,9 +96,6 @@ bindsym $mod+Mod1+Down resize grow height 5 px or 5 ppt
 bindsym $mod+Mod1+Up resize shrink height 5 px or 5 ppt
 bindsym $mod+Mod1+Right resize grow width 5 px or 5 ppt
 
-
-# Launch polybar
-exec_always --no-startup-id sh ~/.config/polybar/launch.sh
 
 # i3-gaps
 gaps inner 10
@@ -154,12 +118,6 @@ focus_wrapping no
 
 ## Application Launchers
 
-# Start ULauncher (only if ulauncher does not already exist)
-exec_always --no-startup-id "sh ~/.config/i3/scripts/ulauncher.sh"
-
-# Tell Ulauncher preferences to launch in floating mode
-for_window [title="Ulauncher Preferences" class="Ulauncher"] floating enable
-
 
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status
@@ -173,14 +131,8 @@ bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @D
 # Restart dunst notification service
 #exec_always systemctl restart --user dunst.service
 
-# Start compositor
-exec_always picom -CG
-
 # Set wallpaper background colour
 exec_always --no-startup-id hsetroot -solid "#111111"
-
-# Start bluetooth
-exec_always blueman-applet 
 
 # Not sure about all these custom colours
 # However this does ensure client.focused_inactive is the same colour as client.unfocused

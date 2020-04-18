@@ -1,10 +1,42 @@
 # vim:ft=conf
-# This file contains the core to concat 
+# Core configuration
+# Must be placed at the top of generated config file
 
 set $mod Mod4
 
 # Restarting i3 requires first building the config file
 bindsym $mod+Shift+r exec "sh ~/.config/i3/build-config.sh"; restart
 
+# reload the configuration file
+bindsym $mod+Shift+c reload
 
- 
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+
+# Start compositor
+exec_always picom -CG
+
+# Start bluetooth
+exec_always blueman-applet 
+
+
+# Start ULauncher (only if ulauncher does not already exist)
+exec_always --no-startup-id "sh ~/.config/i3/scripts/ulauncher.sh"
+
+# Tell Ulauncher preferences to launch in floating mode
+for_window [title="Ulauncher Preferences" class="Ulauncher"] floating enable
+
+# Launch polybar
+exec_always --no-startup-id sh ~/.config/polybar/launch.sh
+
+# Assorted commands for configuring desktop
+exec_always --no-startup-id "sh ~/.config/i3/scripts/desktop.sh"
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+
