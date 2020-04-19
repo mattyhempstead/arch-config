@@ -8,7 +8,7 @@ padding-right = 1
 module-margin-left = 3
 
 modules-left = i3
-modules-right = ip pulseaudio memory cpu temperature battery date tray
+modules-right = ip packages pulseaudio memory cpu temperature battery date tray
 
 font-0 = Source Code Pro:pixelsize=14:style=bold;4
 font-1 = Symbola:pixelsize=14;5 
@@ -55,6 +55,7 @@ format-prefix-foreground = #0F0
 format-prefix-font = 3
 ; "Noto Sans Symbols2" is needed for a nice looking cpu graph
 
+
 [module/memory]
 type = internal/memory
 interval = 3
@@ -62,6 +63,7 @@ label = %percentage_used%%
 format-prefix = "🐏 "
 format-foreground = #FFF
 format-underline = #A8A80B
+
 
 [module/battery]
 type = internal/battery
@@ -88,6 +90,7 @@ format-prefix = 🌡
 format-prefix-foreground = #f44b30
 label = %temperature-c%
 
+
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
@@ -103,12 +106,20 @@ label-volume-foreground = #FFF
 label-muted = 🔇 %percentage%%
 label-muted-foreground = #F00
 
+
 [module/ip]
 type = internal/network
 interface = wlp3s0
 format-connected = <label-connected>
 label-connected = %local_ip%
 font-0 = unifont:fontformat=truetype:size=13:antialias=false;0
+
+
+[module/packages]
+type = custom/script
+exec = echo ↺ $(pacman -Qu > /dev/null; yay -Qu | wc -l)
+interval = 3600
+
 
 [module/test]
 type = custom/script
