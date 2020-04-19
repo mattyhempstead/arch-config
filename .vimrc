@@ -13,5 +13,5 @@ autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype json setlocal ts=4 sw=4 expandtab
 autocmd Filetype css setlocal ts=4 sw=4 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
-autocmd Filetype c setlocal ts=4 sw=4 expandtab
+autocmd BufNewFile,BufRead *.c,*.h setlocal ts=4 sw=4 expandtab
 
