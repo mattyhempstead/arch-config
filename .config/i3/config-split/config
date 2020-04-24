@@ -144,4 +144,6 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 # This is currently used to configure how the URxvt terminal looks
 exec_always xrdb ~/.Xresources
 
+bindsym $mod+b exec polybar-msg cmd toggle
+
 

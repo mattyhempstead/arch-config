@@ -22,6 +22,8 @@ tray-position = right
 #line-size = 2
 #border-size = 2
 
+enable-ipc = true
+
 [module/date]
 type = internal/date
 date = %Y-%m-%d%
@@ -81,6 +83,7 @@ format-charging-prefix-foreground = #FF0
 format-full = <label-full>
 format-full-prefix = "⚡ "
 format-full-prefix-foreground = #FF0
+
 
 [module/temperature]
 type = internal/temperature
