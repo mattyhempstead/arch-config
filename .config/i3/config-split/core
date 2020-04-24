@@ -22,21 +22,19 @@ exec_always picom -CG
 # Start bluetooth
 exec_always blueman-applet 
 
-
-# Start ULauncher (only if ulauncher does not already exist)
-exec_always --no-startup-id "sh ~/.config/i3/scripts/ulauncher.sh"
-
-# Tell Ulauncher preferences to launch in floating mode
-for_window [title="Ulauncher Preferences" class="Ulauncher"] floating enable
-
 # Launch polybar
-exec_always --no-startup-id sh ~/.config/polybar/launch.sh
+exec_always --no-startup-id "sh ~/.config/polybar/launch.sh"
 
 # Assorted commands for configuring desktop
 exec_always --no-startup-id "sh ~/.config/i3/scripts/desktop.sh"
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+exec_always nm-applet
+
+# Read from Xresources file
+# This is currently used to configure how the URxvt terminal looks
+exec_always xrdb ~/.Xresources
+
+# Restart dunst notification service
+#exec_always systemctl restart --user dunst.service
 
 
