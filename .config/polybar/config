@@ -5,6 +5,9 @@ height = 26
 background = #111
 padding-right = 1
 
+tray-position = right
+
+enable-ipc = true
 module-margin-left = 3
 
 modules-left = i3
@@ -16,18 +19,22 @@ font-2 = Noto Sans Symbols2:pixelsize=14;6
 font-3 = Symbols Nerd Font:pixelsize=14;4
 ;font-3 = FreeMono:pixelsize=14;4
 
-#monitor = eDP-1 
-tray-position = right
 
-#line-size = 2
-#border-size = 2
-
+[bar/bar-right]
+height = 26
+background = #111
+padding-right = 1
+module-margin-left = 3
+modules-left = i3
+font-0 = Source Code Pro:pixelsize=14:style=bold;4
 enable-ipc = true
+monitor = DP-1
+
 
 [module/date]
 type = internal/date
-date = %Y-%m-%d%
-time = %H:%M:%S
+date = %{F#ffbaba}%a %{F#bac3ff}%Y-%m-%d
+time = %{F#baffc0}%H:%M:%S
 label = %date% %time% 
 
 
@@ -35,16 +42,21 @@ label = %date% %time%
 type = internal/i3
 strip-wsnumbers = true
 
+pin-workspaces = true
 
 label-focused = %name%
 label-focused-padding = 1
-label-focused-background = #5d8ddd 
+label-focused-background = #4e6da3
 
 label-unfocused = %name%
 label-unfocused-padding = 1
 
 label-urgent = %name%
 label-urgent-padding = 1
+
+label-visible = %name%
+label-visible-padding = 1
+label-visible-background = #0b2045
 
 
 [module/cpu]
@@ -112,16 +124,18 @@ label-muted-foreground = #F00
 
 [module/ip]
 type = internal/network
-interface = wlp3s0
+interface = enp3s0
 format-connected = <label-connected>
 label-connected = %local_ip%
+format-disconnected = %{F#F00}Network Disconnected
 font-0 = unifont:fontformat=truetype:size=13:antialias=false;0
 
 
 [module/packages]
 type = custom/script
-exec = echo ↺ $(pacman -Qu > /dev/null; yay -Qu | wc -l)
-interval = 3600
+label = %{F#FFF}%output%
+exec = echo ↺ $(checkupdates > /dev/null; yay -Qu | wc -l)
+interval = 600
 
 
 [module/test]
