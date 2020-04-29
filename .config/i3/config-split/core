@@ -37,4 +37,6 @@ exec_always xrdb ~/.Xresources
 # Restart dunst notification service
 #exec_always systemctl restart --user dunst.service
 
+# Corsair keyboard lights
+exec_always "sh ~/.config/i3/scripts/start-once.sh ckb-next -b"
 
