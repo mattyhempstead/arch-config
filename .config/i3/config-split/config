@@ -21,6 +21,9 @@ focus_wrapping no
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Stop mouse moving on monitor focus change
+mouse_warping none
+
 # Set wallpaper background colour
 exec_always --no-startup-id hsetroot -solid "#111111"
 
