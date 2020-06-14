@@ -40,3 +40,7 @@ exec_always xrdb ~/.Xresources
 # Corsair keyboard lights
 exec_always "sh ~/.config/i3/scripts/start-once.sh ckb-next -b"
 
+
+
+# -u for unique
+exec_always --no-startup-id exec i3-workspace-names-daemon -d "   " -u

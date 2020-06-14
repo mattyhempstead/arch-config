@@ -6,61 +6,67 @@ set $left   HDMI-0
 set $right  DP-1
 
 
-workspace "00:0" output $middle
-workspace "01:1" output $middle
-workspace "02:2" output $middle
-workspace "03:3" output $middle
-workspace "04:4" output $middle
-workspace "05:5" output $middle
-workspace "06:6" output $middle
-workspace "07:7" output $middle
-workspace "08:8" output $middle
-workspace "09:9" output $middle
+# Workspaces are numbered 1-10, with an extra number 1-3 at the start referring to the monitor.
+# This way we can extract the numbers of other workspaces on the same monitor by using the first character.
+# I would use 10, 20, and 30 for the 10th monitors, but I can't find how to change the ordering of windows in polybar.
+# Using 110, 210 and 310 ensures the monitors will be last in their respective grouping.
 
-workspace "10:0" output $right
-workspace "11:1" output $right
-workspace "12:2" output $right
-workspace "13:3" output $right
-workspace "14:4" output $right
-workspace "15:5" output $right
-workspace "16:6" output $right
-workspace "17:7" output $right
-workspace "18:8" output $right
-workspace "19:9" output $right
+# The reason I start at 11 rather than 01 is because digts below 10 will have their preceding zeros stripped in the number.
+# However, the names will maintain the preceding zero, but using them means no easy name customization.
 
-workspace "20:0" output $left
-workspace "21:1" output $left
-workspace "22:2" output $left
-workspace "23:3" output $left
-workspace "24:4" output $left
-workspace "25:5" output $left
-workspace "26:6" output $left
-workspace "27:7" output $left
-workspace "28:8" output $left
-workspace "29:9" output $left
+workspace "11:" output $middle
+workspace "12:" output $middle
+workspace "13:" output $middle
+workspace "14:" output $middle
+workspace "15:" output $middle
+workspace "16:" output $middle
+workspace "17:" output $middle
+workspace "18:" output $middle
+workspace "19:" output $middle
+workspace "110:" output $middle
 
+workspace "21:" output $right
+workspace "22:" output $right
+workspace "23:" output $right
+workspace "24:" output $right
+workspace "25:" output $right
+workspace "26:" output $right
+workspace "27:" output $right
+workspace "28:" output $right
+workspace "29:" output $right
+workspace "210:" output $right
+
+workspace "31:" output $left
+workspace "32:" output $left
+workspace "33:" output $left
+workspace "34:" output $left
+workspace "35:" output $left
+workspace "36:" output $left
+workspace "37:" output $left
+workspace "38:" output $left
+workspace "39:" output $left
+workspace "310:" output $left
 
 # Switch to selected number only on current monitor
-bindsym $mod+1 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)1:1
-bindsym $mod+2 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)2:2
-bindsym $mod+3 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)3:3
-bindsym $mod+4 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)4:4
-bindsym $mod+5 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)5:5
-bindsym $mod+6 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)6:6
-bindsym $mod+7 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)7:7
-bindsym $mod+8 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)8:8
-bindsym $mod+9 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)9:9
-bindsym $mod+0 exec i3-msg workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)10:0
-
+bindsym $mod+1 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)1:
+bindsym $mod+2 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)2:
+bindsym $mod+3 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)3:
+bindsym $mod+4 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)4:
+bindsym $mod+5 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)5:
+bindsym $mod+6 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)6:
+bindsym $mod+7 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)7:
+bindsym $mod+8 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)8:
+bindsym $mod+9 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)9:
+bindsym $mod+0 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)10:
 
 # Move focused container to selected number on current monitor
-bindsym $mod+Shift+1 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)1:1
-bindsym $mod+Shift+2 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)2:2
-bindsym $mod+Shift+3 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)3:3
-bindsym $mod+Shift+4 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)4:4
-bindsym $mod+Shift+5 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)5:5
-bindsym $mod+Shift+6 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)6:6
-bindsym $mod+Shift+7 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)7:7
-bindsym $mod+Shift+8 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)8:8
-bindsym $mod+Shift+9 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)9:9
-bindsym $mod+Shift+0 exec i3-msg move container to workspace $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name' | cut -b 1)10:0
+bindsym $mod+Shift+1 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)1:
+bindsym $mod+Shift+2 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)2:
+bindsym $mod+Shift+3 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)3:
+bindsym $mod+Shift+4 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)4:
+bindsym $mod+Shift+5 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)5:
+bindsym $mod+Shift+6 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)6:
+bindsym $mod+Shift+7 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)7:
+bindsym $mod+Shift+8 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)8:
+bindsym $mod+Shift+9 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)9:
+bindsym $mod+Shift+0 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)10:
