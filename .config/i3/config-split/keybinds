@@ -8,7 +8,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill 
 
 # rofi is wonderful
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -show drun -m -1
 
 # change focus
 bindsym $mod+Left focus left
