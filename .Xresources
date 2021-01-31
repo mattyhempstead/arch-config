@@ -5,10 +5,10 @@ URxvt.foreground: #FFFFFF
 URxvt.background: #000000
 
 URxvt.font: xft:Source Code Pro:pixelsize=16:style=medium,\
-            xft:Noto Emoji
+            xft:/usr/share/fonts/TTF/Symbola.ttf
 
 ! Fade text on unfocus
-URxvt.fading: 20
+URxvt.fading: 10
 
 ! Scrolly boi
 URxvt.scrollBar_right: true
@@ -33,6 +33,7 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 ! Remove yellow box that appears on Ctrl+Shift
 URxvt.iso14755 : false
+URxvt.iso14755_52 : false
 
 !! Allow text selection mode for copying
 ! Shortcuts are a bit confusing
@@ -41,6 +42,20 @@ URxvt.iso14755 : false
 ! "v" to enter/leave select mode
 ! "y" to yank (copy) text to clipboard
 ! "Esc" or "q" to exit select mode
-URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select
-URxvt.keyboard-select.clipboard: true
-URxvt.keysym.Control-s: perl:keyboard-select:activate
+! URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select
+! URxvt.keyboard-select.clipboard: true
+! URxvt.keysym.Control-s: perl:keyboard-select:activate
+
+URxvt.saveLines: 3000
+
+
+URxvt.perl-ext-common: default,tabbedex
+!URxvt.tabbedex.new-button: false
+!URXvt.tabbed.reopen-on-close: yes
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Shift-ISO_Left_Tab: perl:tabbedex:prev_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Page_Up: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Shift-Page_Down: perl:tabbedex:move_tab_right
+URxvt.tabbed.no-tabbedex-keys: true
+
