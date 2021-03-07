@@ -35,12 +35,13 @@ exec_always nm-applet
 exec_always xrdb ~/.Xresources
 
 # Restart dunst notification service
-#exec_always systemctl restart --user dunst.service
+exec_always --no-startup-id dunst
 
 # Corsair keyboard lights
 exec_always "sh ~/.config/i3/scripts/start-once.sh ckb-next -b"
 
-
+# Bluetooth media controls
+exec_always --no-startup-id mpris-proxy
 
 # -u for unique
 exec_always --no-startup-id exec i3-workspace-names-daemon -d "   " -u

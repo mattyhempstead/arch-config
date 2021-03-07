@@ -85,3 +85,6 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl prev
 bindsym $mod+b exec polybar-msg cmd toggle
 
 
+# Capslock to esc
+exec_always setxkbmap -option caps:escape
+

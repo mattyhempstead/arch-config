@@ -6,7 +6,7 @@ gaps inner 10
 gaps outer -5
 
 # Remove title bars by setting font size to zero
-#font pango:DejaVu Sans Mono 0
+#font pango:DejaVu Sans Mono 10
 
 # Set size of highlightable borders
 default_border pixel 4
