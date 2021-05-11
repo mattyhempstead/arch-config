@@ -1,0 +1,7 @@
+rofi.modi:		drun
+rofi.theme:		custom.rasi
+rofi.display-drun:	 
+rofi.lines:		10
+rofi.show-icons:	true
+rofi.icon-theme:	hicolor	
+
