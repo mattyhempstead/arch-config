@@ -31,11 +31,11 @@ NORMAL=$(tput sgr0)
 
 
 ## The prompt string at the start of every command
-USER='${GREEN}${BOLD}\u${WHITE}${NORMAL} '
-WD='${YELLOW}$(pwd_short)${WHITE} '
-BRANCH='${PURPLE}$(git_branch)${WHITE}'
-#SYMBOL='\[\e[;1;31m\]🖤 \[\e[;0;37m\]'
-SYMBOL='❤️ '
+USER='\[${GREEN}${BOLD}\]\u\[${WHITE}${NORMAL}\] '
+WD='\[${YELLOW}\]$(pwd_short)\[${WHITE}\] '
+BRANCH='\[${PURPLE}\]$(git_branch)\[${WHITE}\]'
+SYMBOL='\[❤️\]  '$(echo -ne '\b') # idk why this fixes it but it does
+#PS1=$USER$WD$BRANCH$SYMBOL
 PS1=$USER$WD$BRANCH$SYMBOL
 
 
