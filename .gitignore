@@ -30,3 +30,7 @@
 !.config/dunst/**
 
 .Rproj.user
+
+!.config/kitty/
+!.config/kitty/**
+
