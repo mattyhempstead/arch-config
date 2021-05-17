@@ -16,6 +16,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
+Plugin 'iamcco/commentary.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -59,16 +60,14 @@ autocmd Filetype markdown hi htmlH2 cterm=bold ctermfg=Green
 
 
 
+
 colorscheme delek
 
-" Grey line numbers
-hi LineNr ctermfg=DarkGrey
-
-
-hi clear CursorLine
-hi clear CursorLineNR
-set cursorline
-hi CursorLineNR cterm=bold
+" Override defaults in colour scheme
+autocmd ColorScheme * hi LineNr ctermfg=DarkGrey
+autocmd ColorScheme * hi clear CursorLine
+autocmd ColorScheme * set cursorline
+autocmd ColorScheme * hi CursorLineNR cterm=bold ctermfg=White
 
 
 " Look into markdown preview
