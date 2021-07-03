@@ -11,7 +11,7 @@ enable-ipc = true
 module-margin-left = 3
 
 modules-left = i3
-modules-right = ip rcloud-up rcloud-down packages pulseaudio filesystem-home filesystem-root memory cpu temperature battery date tray
+modules-right = ip notes-up notes-down packages pulseaudio filesystem-home filesystem-root memory cpu temperature battery date tray
 
 font-0 = Source Code Pro:pixelsize=14:style=bold;4
 font-1 = Symbola:pixelsize=14;5 
@@ -21,7 +21,7 @@ font-4 = Font Awesome 5 Free:style=Solid;4
 font-5 = Font Awesome 5 Brands Regular;4
 ;font-3 = FreeMono:pixelsize=14;4
 
-monitor = HDMI-0 
+monitor = DP-1
 
 [bar/bar-right]
 height = 26
@@ -40,7 +40,7 @@ font-4 = Font Awesome 5 Free:style=Solid;4
 font-5 = Font Awesome 5 Brands Regular;4
 
 enable-ipc = true
-monitor = DP-1
+monitor = HDMI-0
 
 [bar/bar-left]
 height = 26
@@ -142,7 +142,7 @@ format-full-prefix-foreground = #FF0
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+thermal-zone = 2
 format = <label>
 format-prefix = 🌡
 format-prefix-foreground = #f44b30
@@ -194,19 +194,19 @@ exec = echo ↺ $(($(checkupdates | wc -l)+$(yay -Qua | wc -l)))
 interval = 600
 click-left = urxvt -e sh -c "echo -e 'Updating yay\n';yay;bash" &
 
-[module/rcloud-up]
+[module/notes-up]
 type = custom/script
-label = %{F#FFF}%{T3}⬆%output%
-exec = echo ☁`rclone check ~/Notes google-drive:Notes 3>&1 1>&2 2>&3 | grep "NOTICE:.*differences found" | cut -d" " -f8`
+label = %{F#FFF}%{T1}⬆📝%output%
+exec = echo `cd ~/Notes && git diff --numstat | wc -l`
 interval = 600
-click-left = urxvt -e sh -c "echo -en 'Uploading to drive\nPress enter to begin...';read;rclone sync -i -v ~/Notes google-drive:Notes --drive-import-formats pptx,docx;bash" &
+click-left = urxvt -e sh -c "echo -en 'Pushing to github\nPress enter to begin...';read;git status" &
 
-[module/rcloud-down]
+[module/notes-down]
 type = custom/script
-label = %{F#FFF}%{T3}⬇%output%
-exec = echo ☁`rclone check google-drive:Notes ~/Notes 3>&1 1>&2 2>&3 | grep "NOTICE:.*differences found" | cut -d" " -f9`
+label = %{F#FFF}%{T1}⬇📝%output%
+exec = echo `echo x`
 interval = 600
-click-left = urxvt -e sh -c "echo -en 'Downloading from drive\nPress enter to begin...';read;rclone sync -i -v google-drive:Notes ~/Notes --drive-import-formats pptx,docx;bash" &
+click-left = urxvt -e sh -c "echo -en 'Pulling from github\nPress enter to begin...';read;echo 1" &
 
 [module/test]
 type = custom/script

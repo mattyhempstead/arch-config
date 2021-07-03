@@ -43,12 +43,17 @@ PS1=$USER$WD$BRANCH$SYMBOL
 PROMPT_COMMAND="echo -en '\033]0;'; echo -n 'bash '; pwd_short; echo -en '\a'"
 
 
+export EDITOR='nvim'
+
+
 # Some useful aliases
 alias ls='ls --color=auto'
 alias pls='sudo $(fc -ln -1)' # runs the previous command with sudo
 alias cls='clear'
 alias xclp='xclip -selection "clipboard"'
 alias py='python3'
+alias vim='nvim'
+alias v='nvim'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/matty/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/matty/Downloads/google-cloud-sdk/path.bash.inc'; fi
@@ -62,3 +67,12 @@ bind '"\eOd":shell-backward-word'
 
 # Binding for Ctrl-Backspace to delete word
 bind '"\C-h":shell-backward-kill-word'
+
+
+# Duplicate the current terminal WD
+alias dupe='(&>/dev/null kitty -d $PWD &) && echo Duplicated WD $PWD'
+
+# The only way to kitty cat images with autocomplete
+alias icat='kitty +kitten icat'
+
+

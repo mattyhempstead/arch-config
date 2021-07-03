@@ -1,0 +1,21 @@
+# Modules links on the right
+https://github.com/polybar/polybar/wiki
+
+# Control over module updates
+https://github.com/polybar/polybar/wiki/Module:-ipc
+https://github.com/budlabs/polify
+
+# Workspaces
+Bottom of page talks about way to get list of workspaces
+https://github.com/polybar/polybar/wiki/Module:-i3
+
+Returns a json of workspaces
+$ i3-msg -t get_workspaces
+$ man i3-msg
+
+Could us this to write a custom script which looks at which applications are on which workspaces. 
+Then have custom icons depending on the application on workspaces.
+Maybe use negative offset to get the icon displaying just below it.
+
+
+

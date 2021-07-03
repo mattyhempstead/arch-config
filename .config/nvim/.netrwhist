@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/matty/.config/rofi'
+let g:netrw_dirhist_2='/home/matty/Projects/wim/src'
+let g:netrw_dirhist_1='/home/matty/Projects/wim'
+let g:netrw_dirhist_0='/home/matty/Projects/wim/build'
+let g:netrw_dirhist_9='/home/matty/Projects/wim/docs'
+let g:netrw_dirhist_8='/home/matty/Projects/wim/src'
+let g:netrw_dirhist_7='/home/matty/Projects/wim'
+let g:netrw_dirhist_6='/home/matty/Projects/wim/src'
+let g:netrw_dirhist_5='/home/matty'
+let g:netrw_dirhist_4='/home/matty/.config/nvim'

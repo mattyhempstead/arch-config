@@ -16,7 +16,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
-Plugin 'iamcco/commentary.vim'
+
+" Commenting
+Plugin 'tpope/vim-commentary'
+
+" Autocomplete coc
+Plugin 'neoclide/coc.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,7 +47,11 @@ autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 " autocmd BufNewFile,BufRead *.c,*.h setlocal ts=4 sw=4 expandtab
 " autocmd Filetype bash setlocal ts=4 sw=4 expandtab
 
-nnoremap di_ dT_dt_h 
+" Lets me visual select, yank, and delete snake-cased text (underscores)
+vnoremap i_ T_ot_
+nnoremap yi_ T_yt_
+nnoremap di_ T_dt_
+
 
 set mouse=a
 
@@ -53,15 +62,12 @@ let g:vim_markdown_folding_disabled = 1
 set conceallevel=2
 let g:vim_markdown_math = 1
 
-autocmd Filetype markdown set tw=80
+" autocmd Filetype markdown set tw=80
 
 autocmd Filetype markdown hi htmlH1 cterm=bold ctermfg=Green
 autocmd Filetype markdown hi htmlH2 cterm=bold ctermfg=Green
 
 
-
-
-colorscheme delek
 
 " Override defaults in colour scheme
 autocmd ColorScheme * hi LineNr ctermfg=DarkGrey
@@ -69,10 +75,65 @@ autocmd ColorScheme * hi clear CursorLine
 autocmd ColorScheme * set cursorline
 autocmd ColorScheme * hi CursorLineNR cterm=bold ctermfg=White
 
+" Background of intellisense window thingy
+autocmd ColorScheme * hi Pmenu ctermbg=236 ctermfg=7
+
+" Highlight red bg for trailing whitespaces when not in insert mode
+autocmd ColorScheme * hi TrailingWhiteSpace ctermbg=red
+autocmd ColorScheme * match TrailingWhiteSpace /\s\+$/
+autocmd InsertEnter * hi TrailingWhiteSpace ctermbg=NONE
+autocmd InsertLeave * hi TrailingWhiteSpace ctermbg=red
+
+" A better red for comments
+autocmd ColorScheme * hi Comment ctermfg=9
+
+colorscheme delek
 
 " Look into markdown preview
 " Also maybe gvim or something that allows me to have more colour options
 " (nvim?) 
+
+" Shows command as you build it
+set showcmd
+
+
+"" coc (autocomplete)
+
+" Need to install language servers like `:CocInstall coc-clangd`
+" https://github.com/neoclide/coc.nvim/wiki/Language-servers
+
+" https://github.com/neoclide/coc.nvim/issues/869
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+
+" Remove column on left and give red background to erroring lines
+set signcolumn=no
+hi CocErrorSign ctermfg=9 ctermbg=52
+hi CocErrorFloat ctermfg=9 ctermbg=NONE
+
+
+" A util function which will show the highlight groups for a char
+" Also remember u call with :call SynStack()
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
+
+"set updatetime=300
 
 
 

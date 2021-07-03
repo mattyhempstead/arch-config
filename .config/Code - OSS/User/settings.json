@@ -1,6 +1,5 @@
 {
     "workbench.colorTheme": "Monokai",
-    "window.zoomLevel": 1,
     "window.enableMenuBarMnemonics": false,
     "eslint.validate": [
         "javascript",
@@ -15,5 +14,7 @@
     "files.associations": {
         "**/.i3/config": "i3",
         "**/i3/config": "i3"
-    }
+    },
+    "tabnine.experimentalAutoImports": true,
+    "keyboard.dispatch": "keyCode"
 }

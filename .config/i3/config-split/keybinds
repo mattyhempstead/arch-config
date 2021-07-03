@@ -2,7 +2,11 @@
 # Keybinds
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+#bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec kitty
+
+# I think this makes opening a fraction of a second quicker?
+#bindsym $mod+Return exec kitty --single-instance
 
 # Kill focused window
 bindsym $mod+Shift+q kill 
@@ -36,6 +40,10 @@ bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+
+#bindsym $mod+t layout tabbed
+#bindsym $mod+s layout stacking
+
 
 ## Resize window
 # Pressing left will shrink the window’s width.

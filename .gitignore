@@ -5,17 +5,13 @@
 !.bash_profile
 !.inputrc
 !.Xresources
-!.vimrc
 
-# Add certain files in .config
-!.config
+
+!.config/
 
 !.config/i3/
 !.config/i3/**
 .config/i3/config
-
-!.config/i3status
-!.config/i3status/config
 
 !.config/Code\ -\ OSS
 !.config/Code\ -\ OSS/User
@@ -23,14 +19,20 @@
 !.config/Code\ -\ OSS/User/keybindings.json
 
 !.config/polybar
-!.config/polybar/config
-!.config/polybar/launch.sh
+!.config/polybar/**
 
 !.config/dunst/
 !.config/dunst/**
 
-.Rproj.user
-
 !.config/kitty/
 !.config/kitty/**
+
+!.config/nvim/
+!.config/nvim/**
+
+!.config/picom/
+!.config/picom/**
+
+!.config/rofi/
+!.config/rofi/**
 
