@@ -36,3 +36,6 @@
 !.config/rofi/
 !.config/rofi/**
 
+!.config/fontconfig/
+!.config/fontconfig/**
+
