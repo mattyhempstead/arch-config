@@ -1,9 +1,14 @@
 # vim:ft=conf
 # Workspace stuff
 
-set $middle DP-5
+set $middle DP-1
 set $left   HDMI-0
-set $right  DP-1
+set $right  DP-4
+
+# set $middle DP-1
+# set $left   HDMI-1
+# set $right  DP-3
+
 
 
 # Workspaces are numbered 1-10, with an extra number 1-3 at the start referring to the monitor.
