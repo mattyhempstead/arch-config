@@ -39,3 +39,7 @@
 !.config/fontconfig/
 !.config/fontconfig/**
 
+!.config/pulse/
+!.config/pulse/default.pa
+
+
