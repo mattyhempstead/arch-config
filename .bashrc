@@ -50,10 +50,30 @@ export EDITOR='nvim'
 alias ls='ls --color=auto'
 alias pls='sudo $(fc -ln -1)' # runs the previous command with sudo
 alias cls='clear'
-alias xclp='xclip -selection "clipboard"'
+alias clip='xclip -selection "clipboard"' # ctrl+v
+alias clipp='xclip -selection "primary"' # middle click
 alias py='python3'
+alias ipy='ipython'
 alias vim='nvim'
 alias v='nvim'
+alias ip='ip -c'
+
+# Open file manager (explorer) detached from terminal
+# e.g. `f ./foo/bar` to open file explorer at `./foo/bar`
+FILE_EXPLORER='nautilus'
+f() {
+    (&>/dev/null $FILE_EXPLORER $@ &)
+}
+
+alias rstudio='rstudio-bin --disable-seccomp-filter-sandbox'
+
+git() {
+    if [[ $@ == "log" ]]; then
+        command git log --graph
+    else
+        command git "$@"
+    fi
+}
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/matty/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/matty/Downloads/google-cloud-sdk/path.bash.inc'; fi
@@ -72,7 +92,39 @@ bind '"\C-h":shell-backward-kill-word'
 # Duplicate the current terminal WD
 alias dupe='(&>/dev/null kitty -d $PWD &) && echo Duplicated WD $PWD'
 
-# The only way to kitty cat images with autocomplete
+# There are a few icat kitty commands, this one has autocomplete.
 alias icat='kitty +kitten icat'
 
+# Open files qik
+alias o='xdg-open'
 
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/usr/local/share/pkgconfig:$PKG_CONFIG_PATH
+
+export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib64/:$LD_LIBRARY_PATH
+
+# Conda
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/opt/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+export http_proxy=''
+export https_proxy=''
+export ftp_proxy=''
+export socks_proxy=''

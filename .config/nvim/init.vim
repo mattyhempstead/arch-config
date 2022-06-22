@@ -37,6 +37,11 @@ syntax on
 set number
 set relativenumber
 
+
+" Set filetypes
+autocmd BufNewFile,BufRead,BufReadPost *.gs set ft=typescript
+
+
 " Set indentation type depending on file type
 set ts=4 sw=4 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
@@ -55,18 +60,36 @@ nnoremap di_ T_dt_
 
 set mouse=a
 
-
+set wrap linebreak
 
 " Markdown stuff
 let g:vim_markdown_folding_disabled = 1
 set conceallevel=2
 let g:vim_markdown_math = 1
 
+let g:vim_markdown_conceal_code_blocks = 1
+
 " autocmd Filetype markdown set tw=80
 
-autocmd Filetype markdown hi htmlH1 cterm=bold ctermfg=Green
-autocmd Filetype markdown hi htmlH2 cterm=bold ctermfg=Green
+" Super and subscript
+autocmd Filetype markdown hi Conceal ctermbg=none
 
+" Headings
+autocmd Filetype markdown hi htmlH1 cterm=bold ctermfg=46
+autocmd Filetype markdown hi htmlH2 cterm=bold ctermfg=34
+autocmd Filetype markdown hi htmlH3 cterm=bold ctermfg=22
+autocmd Filetype markdown hi htmlH4 cterm=none ctermfg=22
+
+" Inline code block
+autocmd Filetype markdown hi mkdCode cterm=none ctermfg=228
+
+" Multiline code block
+autocmd Filetype markdown hi mkdCodeStart cterm=none ctermfg=244
+autocmd Filetype markdown hi mkdCodeEnd cterm=none ctermfg=244
+autocmd Filetype markdown hi mkdCodeDelimiter cterm=none ctermfg=244
+
+" Math
+autocmd Filetype markdown hi texMath cterm=none ctermfg=208
 
 
 " Override defaults in colour scheme
@@ -75,7 +98,7 @@ autocmd ColorScheme * hi clear CursorLine
 autocmd ColorScheme * set cursorline
 autocmd ColorScheme * hi CursorLineNR cterm=bold ctermfg=White
 
-" Background of intellisense window thingy
+" Background of intellisense window popup thingy
 autocmd ColorScheme * hi Pmenu ctermbg=236 ctermfg=7
 
 " Highlight red bg for trailing whitespaces when not in insert mode
@@ -85,13 +108,15 @@ autocmd InsertEnter * hi TrailingWhiteSpace ctermbg=NONE
 autocmd InsertLeave * hi TrailingWhiteSpace ctermbg=red
 
 " A better red for comments
-autocmd ColorScheme * hi Comment ctermfg=9
+autocmd ColorScheme * hi Comment ctermfg=124
+
+
 
 colorscheme delek
 
 " Look into markdown preview
 " Also maybe gvim or something that allows me to have more colour options
-" (nvim?) 
+" (nvim?)
 
 " Shows command as you build it
 set showcmd
@@ -135,5 +160,28 @@ endfunction
 
 "set updatetime=300
 
+" Get autocomplete suggestions with ctrl+space
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Cycle through autocomplete with Tab and Shift+Tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Cancel autocomplete selection with Escape
+"inoremap <expr> <Esc> pumvisible() ? coc#refresh() : "\<Esc>"
+
+"inoremap <expr> <Esc> pumvisible() ? coc#float#close_all() : "\<Esc>"
+
+"function! s:CancelCoc()
+"    call coc#refresh()
+"endfunction
+"inoremap <expr> <Esc> pumvisible() ? <SID>CancelCoc() : "\<Esc>"
+
+" if visible refresh
+" if visible still, refrehs again?
+
+
+
+:tnoremap <Esc> <C-\><C-n>
 
 
