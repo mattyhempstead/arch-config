@@ -16,5 +16,36 @@
         "**/i3/config": "i3"
     },
     "tabnine.experimentalAutoImports": true,
-    "keyboard.dispatch": "keyCode"
+    "keyboard.dispatch": "keyCode",
+    "cSpell.userWords": [
+        "double",
+        "favicon",
+        "node",
+        "prank"
+    ],
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "terminal.integrated.inheritEnv": false,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "C_Cpp.updateChannel": "Insiders",
+    "notebook.lineNumbers": "on",
+    "notebook.consolidatedRunButton": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "right"
+    },
+    "explorer.compactFolders": false,
+    "svelte.enable-ts-plugin": true,
+    "explorer.expandSingleFolderWorkspaces": false,
+    "python.insidersChannel": "daily",
+    "python.pythonPath": "/usr/bin/python",
+    "python.autoComplete.extraPaths": [
+        
+    ],
+    "window.zoomLevel": -1
 }

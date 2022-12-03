@@ -108,7 +108,7 @@ autocmd InsertEnter * hi TrailingWhiteSpace ctermbg=NONE
 autocmd InsertLeave * hi TrailingWhiteSpace ctermbg=red
 
 " A better red for comments
-autocmd ColorScheme * hi Comment ctermfg=124
+" autocmd ColorScheme * hi Comment ctermfg=1
 
 
 

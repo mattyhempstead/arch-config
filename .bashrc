@@ -47,7 +47,11 @@ export EDITOR='nvim'
 
 
 # Some useful aliases
-alias ls='ls --color=auto'
+#alias l='ls --color=auto -lh'
+alias ls='echo USE l INSTEAD!'
+alias l='exa -l --time-style=long-iso'
+alias cat='bat'
+
 alias pls='sudo $(fc -ln -1)' # runs the previous command with sudo
 alias cls='clear'
 alias clip='xclip -selection "clipboard"' # ctrl+v
@@ -57,6 +61,19 @@ alias ipy='ipython'
 alias vim='nvim'
 alias v='nvim'
 alias ip='ip -c'
+
+# cd into mountpoint of target device like `cdm /dev/sda1`
+# There is probably already a command for this but whatever
+cdm() {
+    if [ -z "$1" ]
+    then
+        echo "ERROR: First argument should be a /dev/XXX device path."
+    else
+        PATH_MNT=`findmnt $1 -o TARGET -n`
+        cd "$PATH_MNT"
+    fi
+}
+
 
 # Open file manager (explorer) detached from terminal
 # e.g. `f ./foo/bar` to open file explorer at `./foo/bar`
@@ -90,7 +107,12 @@ bind '"\C-h":shell-backward-kill-word'
 
 
 # Duplicate the current terminal WD
-alias dupe='(&>/dev/null kitty -d $PWD &) && echo Duplicated WD $PWD'
+alias dupe='(&>/dev/null kitty -d "$PWD" &) && echo Duplicated WD $PWD'
+
+d() {
+    echo "Running command detached from terminal..."
+    ($@ &)
+}
 
 # There are a few icat kitty commands, this one has autocomplete.
 alias icat='kitty +kitten icat'
@@ -128,3 +150,25 @@ export http_proxy=''
 export https_proxy=''
 export ftp_proxy=''
 export socks_proxy=''
+
+
+# Give man pages (and less/more) colours
+# This kinda messes up the `env` command... Need to address that
+export LESS_TERMCAP_md=$(tput setaf 10) # green
+export LESS_TERMCAP_us=$(tput bold; tput setaf 14) # red
+
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 6) # cyan
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+# export GROFF_NO_SGR=1         # For Konsole and Gnome-terminal
+# export LESS_TERMCAP_mb=$'\e[1;32m'
+
+

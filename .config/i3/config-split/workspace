@@ -1,9 +1,10 @@
 # vim:ft=conf
 # Workspace stuff
 
-set $middle DP-1
-set $left   HDMI-0
-set $right  DP-4
+set $middle DP-0
+set $left   DP-2
+set $right  HDMI-0
+set $top    DP-4
 
 # set $middle DP-1
 # set $left   HDMI-1
@@ -52,6 +53,17 @@ workspace "38:" output $left
 workspace "39:" output $left
 workspace "310:" output $left
 
+workspace "41:" output $top
+workspace "42:" output $top
+workspace "43:" output $top
+workspace "44:" output $top
+workspace "45:" output $top
+workspace "46:" output $top
+workspace "47:" output $top
+workspace "48:" output $top
+workspace "49:" output $top
+workspace "410:" output $top
+
 # Switch to selected number only on current monitor
 bindsym $mod+1 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)1:
 bindsym $mod+2 exec i3-msg workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)2:
@@ -75,3 +87,4 @@ bindsym $mod+Shift+7 exec i3-msg move container to workspace number $(i3-msg -t 
 bindsym $mod+Shift+8 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)8:
 bindsym $mod+Shift+9 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)9:
 bindsym $mod+Shift+0 exec i3-msg move container to workspace number $(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).num' | cut -b 1)10:
+

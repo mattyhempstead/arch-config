@@ -11,6 +11,10 @@ gaps outer -5
 # Set size of highlightable borders
 default_border pixel 4
 
+# Forces borders on everything
+# This fixes stuff like nautilus not having a border
+for_window [class="^.*"] border pixel 4
+
 # Remove borders when only one window exists
 hide_edge_borders smart
 
@@ -32,5 +36,6 @@ exec_always --no-startup-id hsetroot -solid "#111111"
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #184466
 client.focused_inactive #333333 #222222 #888888 #292d2e   #222222
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+
 
 
